@@ -4,8 +4,8 @@ A lightweight tool use for create a deb (Debian) file on windows.
 ## How to build
 ##### 1. download 3 libraries
 * microtar: <https://github.com/rxi/microtar> create .tar file
-* bzip2: <http://www.bzip.org/> create .bz2 file
-* zlib: <http://zlib.net/> create .bz file
+* bzip2: <https://sourceforge.net/projects/bzip2/> create .bz2 file
+* zlib: <http://zlib.net/> create .gz file
 
 ##### 2. compile bzip2, use command:
 ```sh
