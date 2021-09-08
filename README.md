@@ -2,9 +2,9 @@
 a lightweight tool use for create a deb file for windows.
 
 ## Used library
-microtar: <https://github.com/rxi/microtar>
-bzip2: <http://www.bzip.org/>
-zlib: <http://zlib.net/>
+* microtar: <https://github.com/rxi/microtar>
+* bzip2: <http://www.bzip.org/>
+* zlib: <http://zlib.net/>
 
 ## How to build
 1. use Visual Studio 2015-2019 create a C++ console application.
