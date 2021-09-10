@@ -153,11 +153,24 @@ void listDir(const char* path, std::vector<std::string>* files)
     FindClose(hFind);
 }
 
-bool put_file_todeb(mtar_t *tar, const string& fname, size_t root_dir_len)
+string& replace_all(string& str, const string& old_value, const string& new_value)
 {
-    const string sub_fname = fname.substr(root_dir_len);
+    while (true) {
+        string::size_type pos(0);
+        if ((pos = str.find(old_value)) != string::npos)
+            str.replace(pos, old_value.length(), new_value);
+        else
+            break;
+    }
+    return str;
+}
+
+bool put_file_totar(mtar_t *tar, const string& fname, size_t root_dir_len)
+{
+    string sub_fname = fname.substr(root_dir_len);
     if (sub_fname.compare(0, 7, "DEBIAN\\") == 0) return true;
     //cout << sub_fname << endl;
+    replace_all(sub_fname, "\\", "/");
 
     FILE* fpSrc = fopen(fname.c_str(), "rb");
     if (fpSrc == NULL) return false;
@@ -191,7 +204,7 @@ int TDebFile::createTarFile(const char* tar_file, const char* dir)
     size_t dir_len = strlen(dir)+1;
     for (auto it = files.begin(); it != files.end(); it++)
     {
-        put_file_todeb(&tar, *it, dir_len);
+        put_file_totar(&tar, *it, dir_len);
     }
 
     mtar_finalize(&tar);
